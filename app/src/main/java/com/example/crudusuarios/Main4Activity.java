@@ -62,7 +62,7 @@ public class Main4Activity extends AppCompatActivity {
                 Intent actividad4 = new Intent(getApplicationContext(), Main2Activity.class);
                 startActivityForResult(actividad4,1);
 
-
+                //SENTECIA SQLite
                 String query = "insert into Usuarios(correo, nombre,clave,tipo) values(Correo,Nombre,Clave,Typei)";
                 Cursor cursor = base.rawQuery(query,null);
             }
