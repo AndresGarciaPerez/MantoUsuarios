@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">crudUsuarios</string>
+
+    <String-array name="datos">
+        <item>uno</item>
+        <item>uno</item>
+        <item>uno</item>
+        <item>uno</item>
+        <item>uno</item>
+        <item>uno</item>
+        <item>uno</item>
+        <item>uno</item>
+        <item>uno</item>
+        <item>uno</item>
+        <item>uno</item>
+
+
+    </String-array>
+</resources>
