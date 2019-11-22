@@ -7,14 +7,14 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 public class baseDatos extends SQLiteOpenHelper {
-    public baseDatos(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+    public baseDatos(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("Create table Usuarios(correo text primary key, nombre text, clave text, tipo integer)");
-        Log.i("Mensaje: ", "Se creo la base de datos");
+        Log.i("Mensaje: ", "Se creo la tabla");
     }
 
     @Override

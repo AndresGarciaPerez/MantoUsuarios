@@ -13,9 +13,10 @@ import android.widget.Toast;
 public class Main4Activity extends AppCompatActivity {
 /*Confirmacion para crear nuevo usuario*/
 
-    bdusuarios bd = new bdusuarios();
-
+    baseDatos bd;
     SQLiteDatabase base;
+
+
     TextView tvNombre, tvCorreo, tvClave, tvTipo;
     Button btnConfirmar, btnCancelar;
     String Nombre,Correo,Clave,type;
@@ -25,8 +26,8 @@ public class Main4Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main4);
 
-        baseDatos db = new baseDatos(getApplicationContext(),"sistemas",null,1);
-        base = db.getWritableDatabase();
+        bd = new baseDatos(getApplicationContext(),"usuarios",null,1);
+        base=bd.getWritableDatabase();
 
         tvNombre = findViewById(R.id.tvNombre);
         tvCorreo = findViewById(R.id.tvCorreo);
@@ -41,30 +42,36 @@ public class Main4Activity extends AppCompatActivity {
         tvCorreo.setText("Nombre: "+datos.getString("nombre"));
         tvClave.setText("Contraseña: "+datos.getString("clave"));
 
-        int typei = datos.getInt("tipo");
-        type = typei == 1? "Usuario": typei == 2? "Asistente": "Administrador";
+        final int Typei = datos.getInt("tipo");
+        type = Typei == 1? "Usuario": Typei == 2? "Asistente": "Administrador";
         tvTipo.setText("Nivel de usuario: "+type);
-        bd.setNombres(type);
+        //bd.setNombres(type);
 
         Nombre = datos.getString("nombre");
         Correo = datos.getString("correo");
         Clave = datos.getString("clave");
 
-
+        Toast.makeText(getApplicationContext(), Correo, Toast.LENGTH_SHORT).show();
         btnConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bd.setNombres(Nombre);
-                bd.setClaves(Clave);
-                bd.setTipos(type);
-                bd.setCorreos(Correo);
-                Toast.makeText(getApplicationContext(),"Usuario Almacenado",Toast.LENGTH_LONG).show();
+
+
+
+                //SENTENCIA SQLite
+                String query = "insert into Usuarios(correo,nombre,clave,tipo) values('"+Correo+"','"+Nombre+"','"+Clave+"','"+Typei+"')";
+                Cursor cursor = base.rawQuery(query,null);
+
+                if (cursor.moveToNext()){
+                    Toast.makeText(getApplicationContext(), "Datos Almacenados", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Error en la bd", Toast.LENGTH_LONG).show();
+                }
+
                 Intent actividad4 = new Intent(getApplicationContext(), Main2Activity.class);
                 startActivityForResult(actividad4,1);
 
-                //SENTENCIA SQLite
-                String query = "insert into Usuarios(correo, nombre,clave,tipo) values(Correo,Nombre,Clave,Typei)";
-                Cursor cursor = base.rawQuery(query,null);
+
             }
         });
 

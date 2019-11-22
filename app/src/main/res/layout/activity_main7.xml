@@ -12,25 +12,25 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/tvCorreo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Correo : Example@mail.com" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/tvNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nombre :  Jose" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/tvClave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Contraseña: 123" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/tvTipo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Tipo: Asistente" />

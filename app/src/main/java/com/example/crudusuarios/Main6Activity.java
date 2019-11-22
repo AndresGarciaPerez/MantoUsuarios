@@ -1,6 +1,8 @@
 package com.example.crudusuarios;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,10 +13,15 @@ public class Main6Activity extends AppCompatActivity {
 
     EditText edtCorreo;
     Button btnBuscar, btnCancelar;
+
+    baseDatos bd;
+    SQLiteDatabase base;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main6);
+
 
         edtCorreo = findViewById(R.id.edtCorreo);
         btnBuscar = findViewById(R.id.btnBuscar);
@@ -24,8 +31,12 @@ public class Main6Activity extends AppCompatActivity {
         btnBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String Correo;
+                Correo = edtCorreo.getText().toString().trim();
+
 
                 Intent objetoConfirmar = new Intent(getApplicationContext(),Main7Activity.class );
+                objetoConfirmar.putExtra("elCorreo",Correo);
                 startActivityForResult(objetoConfirmar,1);
             }
         });

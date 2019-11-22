@@ -44,6 +44,7 @@ public class Main2Activity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent actividad2 = new Intent(getApplicationContext(), MainActivity.class);
                 startActivityForResult(actividad2,1);
+                finish();
             }
         });
 
